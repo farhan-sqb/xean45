@@ -2,12 +2,25 @@
 
 <form name=ONvacPay id=ONvacPay action="?" method=GET>
 
-<input type=text name=grossWages id=grossWages /> Gross Wages &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select name=Rate><option>4.00%</option><option>6.00%</option></select> Rate &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=submit name=Calculate value=Calculate /></form>
+<input type=text name=grossWages id=grossWages required /> Gross Wages &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select name=Rate><option>4.00%</option><option>6.00%</option></select> Rate &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=submit name=Calculate value=Calculate /></form>
 
-
+<div id=result></div>
 
 <script type="text/javascript">
 
 //your code here
+var url_string = window.location.href;
+var url = new URL(url_string);
+var gWages = url.searchParams.get("grossWages");
+var Rate = url.searchParams.get("Rate");
+
+var result = "";
+if(gWages != "" && Rate != ""){
+    //remove the % sign from Rate value
+    Rate = Rate.replace("%", "");
+    result = (gWages * Rate) / 100;
+}
+
+document.getElementById("result").innerHTML = "Result is: " + result;
 
 </script>
