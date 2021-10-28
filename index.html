@@ -21,6 +21,6 @@ if(gWages != "" && Rate != ""){
     result = (gWages * Rate) / 100;
 }
 
-document.getElementById("result").innerHTML = "Result is: " + result;
+document.getElementById("result").innerHTML = "Result is: $" + new Intl.NumberFormat().format(result.toFixed(2));
 
 </script>
